@@ -6,7 +6,8 @@
  3. Used context.
  4. Used typescript.
  5. Used functional based component approach.
- 6. Havnt shown the detail pop up (which was optional)
+ 6. Have not shown the detail pop up (which was optional)
+ 7. Pngs used might be of low quality.
 
 
 ## Project setup
