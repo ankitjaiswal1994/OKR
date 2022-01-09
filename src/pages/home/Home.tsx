@@ -6,7 +6,7 @@ import { Objective } from 'typings/objective.types';
 import { OKRList } from './molecules/OKRList';
 import { Header } from './molecules/Header';
 import { FilterModal } from './molecules/FilterModal';
-import { styles } from 'styles/styles';
+import { homeStyle } from 'styles/styles';
 import { ErrorView } from 'components/ErrorView';
 
 /**
@@ -59,7 +59,7 @@ export default function Home() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={homeStyle.container}>
       <Header handleFilter={handleFilter} />
       <OKRList data={objectives} handleVisible={handleVisible} />
       <FilterModal

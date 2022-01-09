@@ -6,7 +6,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import { styles } from 'styles/styles';
+import { okrListStyle } from 'styles/styles';
 import { PressEvent } from 'typings/events';
 import { Objective, ObjectiveSection } from 'typings/objective.types';
 
@@ -23,7 +23,7 @@ type OKRListProps = {
 export const OKRList = ({ data, handleVisible }: OKRListProps) => {
   const renderItem = ({ item, index, section }) => {
     return section.isVisible ? null : (
-      <Text key={index} style={{ paddingLeft: 30, paddingVertical: 10 }}>
+      <Text key={index} style={okrListStyle.subTitle}>
         ◉ ${item.title}`
       </Text>
     );
@@ -34,12 +34,7 @@ export const OKRList = ({ data, handleVisible }: OKRListProps) => {
   }: SectionListData<Objective>) => {
     return (
       <TouchableOpacity
-        style={{
-          flexDirection: 'row',
-          paddingTop: 20,
-          paddingBottom: 10,
-          backgroundColor: 'white',
-        }}
+        style={okrListStyle.touchableStyle}
         onPress={() => handleVisible(objective)}>
         <Image
           source={
@@ -47,16 +42,16 @@ export const OKRList = ({ data, handleVisible }: OKRListProps) => {
               ? require('../../../../assests/rightArrow.png')
               : require('../../../../assests/downArrow.png')
           }
-          style={{ marginHorizontal: 10 }}
+          style={okrListStyle.imageStyle}
         />
-        <Text style={{ fontWeight: 'bold', flexShrink: 1 }}>{title}</Text>
+        <Text style={okrListStyle.titleStyle}>{title}</Text>
       </TouchableOpacity>
     );
   };
 
   return (
     <SectionList
-      contentContainerStyle={styles.listStyle}
+      contentContainerStyle={okrListStyle.listStyle}
       renderItem={renderItem}
       renderSectionHeader={renderSectionHeader}
       sections={data}

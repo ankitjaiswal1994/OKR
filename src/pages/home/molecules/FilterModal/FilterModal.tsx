@@ -3,7 +3,7 @@ import { useObjective } from 'context/Objective';
 import { View, Modal, Text, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { PressEvent } from 'typings/events';
-import { styles } from 'styles/styles';
+import { filterStyle, styles } from 'styles/styles';
 
 type FilterModalProps = {
   visible: boolean;
@@ -24,28 +24,23 @@ export const FilterModal = ({
 
   return (
     <Modal animationType="slide" transparent={true} visible={visible}>
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
+      <View style={filterStyle.centeredView}>
+        <View style={filterStyle.modalView}>
           {categories.map((item, index) => {
             return (
               <TouchableOpacity
                 onPress={() => filterCategory(item)}
                 key={index}>
                 <Text
-                  style={{
-                    fontWeight: 'bold',
-                    fontSize: 16,
-                    flexShrink: 1,
-                    padding: 12,
-                  }}>
+                  style={filterStyle.title}
+                  onPress={() => filterCategory(item)}>
                   {item}
                 </Text>
               </TouchableOpacity>
             );
           })}
 
-          <View style={{ alignContent: 'space-around' }}></View>
-          <View style={{ flexDirection: 'row', marginTop: 20 }}>
+          <View style={filterStyle.buttonContainer}>
             <Button title="Close" onPress={handleCloseModal} />
             <Button title="Reset" onPress={handleResetModal} />
           </View>

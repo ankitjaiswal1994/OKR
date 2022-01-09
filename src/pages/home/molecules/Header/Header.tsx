@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { headerStyle } from 'styles/styles';
 import { PressEvent } from 'typings/events';
 
 type HeaderProps = {
@@ -8,21 +9,12 @@ type HeaderProps = {
 
 export const Header = ({ handleFilter }: HeaderProps) => {
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-      <Text
-        style={{
-          alignSelf: 'center',
-          fontWeight: 'bold',
-          fontSize: 24,
-          textAlign: 'center',
-          flex: 1,
-        }}>
-        OKRs
-      </Text>
+    <View style={headerStyle.container}>
+      <Text style={headerStyle.title}>OKRs</Text>
       <TouchableOpacity onPress={handleFilter}>
         <Image
           source={require('../../../../assests/filter.png')}
-          style={{ marginRight: 16 }}
+          style={headerStyle.image}
         />
       </TouchableOpacity>
     </View>

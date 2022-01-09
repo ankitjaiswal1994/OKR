@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Text, View } from 'react-native';
-import { styles } from 'styles/styles';
+import { errorStyle } from 'styles/styles';
 import { PressEvent } from 'typings/events';
 
 type ErrorViewTypes = {
@@ -10,9 +10,9 @@ type ErrorViewTypes = {
 
 export const ErrorView = ({ onRetry, message }: ErrorViewTypes) => {
   return (
-    <View style={styles.errorView}>
-      <View style={styles.errorChildView}>
-        <Text style={styles.errorText}>{message}</Text>
+    <View style={errorStyle.errorView}>
+      <View style={errorStyle.errorChildView}>
+        <Text style={errorStyle.errorText}>{message}</Text>
         {onRetry ? <Button onPress={onRetry} title="Try Again" /> : null}
       </View>
     </View>
