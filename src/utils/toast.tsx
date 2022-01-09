@@ -17,10 +17,3 @@ export const showErrorMessage = (message: string, options?: MessageOptions) => {
     ...options,
   });
 };
-export const showWarnMessage = (message: string, options?: MessageOptions) => {
-  showMessage({
-    message,
-    type: 'warning',
-    ...options,
-  });
-};

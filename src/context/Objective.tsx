@@ -12,7 +12,7 @@ import {
   createAsyncActions,
   createAction,
 } from 'utils/context';
-import { showErrorMessage } from 'utils/toast';
+import { showErrorMessage, showSuccessMessage } from 'utils/toast';
 
 export type ObjectiveState = {
   objectives: Array<ObjectiveSection>;
@@ -125,6 +125,7 @@ export const {
   }, []);
 
   const resetObjective = useCallback(() => {
+    showSuccessMessage('Has been reset successfully.');
     dispatch(actions.resetObjective());
   }, []);
 
@@ -137,7 +138,7 @@ export const {
           });
         }
       });
-
+      showSuccessMessage(`${category} filter applied successfully.`);
       dispatch(
         actions.filterObjective({
           objectiveData: data,
