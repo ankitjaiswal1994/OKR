@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import { styles } from 'styles/styles';
 import { PressEvent } from 'typings/events';
 import { Objective, ObjectiveSection } from 'typings/objective.types';
 
@@ -55,6 +56,7 @@ export const OKRList = ({ data, handleVisible }: OKRListProps) => {
 
   return (
     <SectionList
+      contentContainerStyle={styles.listStyle}
       renderItem={renderItem}
       renderSectionHeader={renderSectionHeader}
       sections={data}

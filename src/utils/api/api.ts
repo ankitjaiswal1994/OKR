@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from 'axios';
 
 export const axiosInstance = axios.create({
   baseURL: 'https://okrcentral.github.io/',
@@ -21,36 +21,18 @@ export const api = {
   ) {
     return axiosInstance.get<DefaultApiReponse<T>>(...params);
   },
-  post: function <T extends any>(
-    ...params: Parameters<typeof axiosInstance.post>
-  ) {
-    return axiosInstance.post<DefaultApiReponse<T>>(...params);
-  },
-  put: function <T extends any>(
-    ...params: Parameters<typeof axiosInstance.put>
-  ) {
-    return axiosInstance.put<DefaultApiReponse<T>>(...params);
-  },
-  delete: function <T extends any>(
-    ...params: Parameters<typeof axiosInstance.delete>
-  ) {
-    return axiosInstance.delete<DefaultApiReponse<T>>(...params);
-  },
 };
-
 
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse<any>) => {
     return response;
   },
   (error: any) => {
-    // eslint-disable-next-line no-console
-    console.log({ apiError: error });
-    if (error?.message === "Network Error") {
-      throw new Error("Please check your internet");
+    if (error?.message === 'Network Error') {
+      throw new Error('Please check your internet');
     }
     const errorMessage =
-      error?.response?.data?.message || "Something went wrong";
+      error?.response?.data?.message || 'Something went wrong';
     throw new Error(errorMessage);
   },
 );

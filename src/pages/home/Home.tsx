@@ -7,6 +7,7 @@ import { OKRList } from './molecules/OKRList';
 import { Header } from './molecules/Header';
 import { FilterModal } from './molecules/FilterModal';
 import { styles } from 'styles/styles';
+import { ErrorView } from 'components/ErrorView';
 
 /**
  * Home is the initial page of this application. It will show the list of Okrs
@@ -14,7 +15,7 @@ import { styles } from 'styles/styles';
 export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
   const {
-    state: { objectives, loading },
+    state: { objectives, loading, error },
     actions: {
       getObjectives,
       collapseSection,
@@ -26,10 +27,6 @@ export default function Home() {
   useEffect(() => {
     getObjectives();
   }, []);
-
-  if (loading) {
-    return <Spinner />;
-  }
 
   const handleFilter = () => {
     setModalVisible(true);
@@ -52,6 +49,14 @@ export default function Home() {
     filterObjective(category);
     setModalVisible(false);
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <ErrorView onRetry={getObjectives} message={error.message} />;
+  }
 
   return (
     <View style={styles.container}>

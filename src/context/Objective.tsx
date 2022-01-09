@@ -19,6 +19,7 @@ export type ObjectiveState = {
   cloneObjectives: Array<ObjectiveSection>;
   loading: boolean;
   categories: Array<string>;
+  error?: Error;
 };
 
 const initialState: ObjectiveState = {
@@ -39,6 +40,7 @@ const authReducer = createReducer<ObjectiveState>({
   [`${actions.getObjective.loading}`]: state => ({
     ...state,
     loading: true,
+    error: undefined,
   }),
   [`${actions.getObjective.success}`]: (state, { payload }) => ({
     ...state,
@@ -46,10 +48,12 @@ const authReducer = createReducer<ObjectiveState>({
     objectives: payload.objectiveData,
     categories: payload.categories,
     cloneObjectives: payload.objectiveData,
+    error: undefined,
   }),
-  [`${actions.getObjective.failure}`]: state => ({
+  [`${actions.getObjective.failure}`]: (state, { payload }) => ({
     ...state,
     loading: false,
+    error: payload.error,
   }),
   [`${actions.collapseSection}`]: (state, { payload }) => ({
     ...state,
@@ -83,13 +87,15 @@ export const {
     try {
       const { data } = await api.get<ObjectiveData>(`sample-okrs/db.json`);
 
+      // this will store the categories so that it will be used on filter
+
       let categories: Array<string> = [];
       const result: Array<ObjectiveSection> = data.data.reduce(
         (accum: ObjectiveSection[], current: Objective) => {
           categories.push(current.category);
           let dateGroup: ObjectiveSection | undefined = accum.find(
-            (x: ObjectiveSection) =>
-              x.objective.id === current.parent_objective_id,
+            (item: ObjectiveSection) =>
+              item.objective.id === current.parent_objective_id,
           );
           if (!dateGroup) {
             dateGroup = { title: current.title, objective: current, data: [] };
@@ -110,7 +116,11 @@ export const {
       );
     } catch (e) {
       showErrorMessage(e.message);
-      dispatch(actions.getObjective.failure());
+      dispatch(
+        actions.getObjective.failure({
+          error: e,
+        }),
+      );
     }
   }, []);
 
