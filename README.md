@@ -1,5 +1,8 @@
 # OKR
 
+https://user-images.githubusercontent.com/20721521/148696335-576d9404-fe66-4ed8-a734-a29cb0f55264.mp4
+
+
 ## Assumptions
  1. Using mac m1 tested on both ios and android. (Not intel)
  2. UI is ordinary no fancy color combination. Just serving the logical purpose.
