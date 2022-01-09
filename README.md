@@ -1,5 +1,6 @@
 # OKR
 
+### Video demonstration
 https://user-images.githubusercontent.com/20721521/148696335-576d9404-fe66-4ed8-a734-a29cb0f55264.mp4
 
 
@@ -15,14 +16,6 @@ https://user-images.githubusercontent.com/20721521/148696335-576d9404-fe66-4ed8-
 
 ## Project setup
 
-Pre-Requirements
-
-XCode
-Android Studio
-Node
-yarn
-react-native-cli
-On the off chance that your system doesn't follow the requirements, you can alway follow the documentation Setting Up the Environment Variables for react-native
 
 Clone the project
 
@@ -36,11 +29,15 @@ Open OKRCentralApp folder in terminal.
 $ cd OKRCentralApp
 Install the dependencies required to run the project.
 
+```
   $ yarn install
+```
 
-
+```
   $ cd ios
   $ pod install
+```
+
 it will manages library dependencies for your Xcode.
 
 
@@ -51,12 +48,15 @@ Run the following command for different mobile OS:
 
 IOS:
 
+```
   yarn ios
+```
 
 
 Make sure to open android studio and sync the gradle, it will update the dependencies.
 
 Android:
 
+```
   yarn android
-  
+```
